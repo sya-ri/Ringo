@@ -30,3 +30,6 @@ build:prod:
 login_clasp:
   script:
     - ./node_modules/.bin/clasp login
+  cache:
+    paths:
+      - node_modules/
