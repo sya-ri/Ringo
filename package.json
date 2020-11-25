@@ -8,6 +8,6 @@
     "inquirer-autocomplete-prompt": "^1.0.1"
   },
   "scripts": {
-    "login": "clasp login"
+    "clasp": "clasp"
   }
 }
