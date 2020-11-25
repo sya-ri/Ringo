@@ -1,9 +1,10 @@
-
 {
   "name": "Ringo",
   "description": "Accounting Management System",
   "version": "1.0.0",
   "dependencies": {
-    "@google/clasp": ""
+    "@google/clasp": "^2.3.0",
+    "inquirer": "^7.0.0",
+    "inquirer-autocomplete-prompt": "^1.0.1"
   }
 }
