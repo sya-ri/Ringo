@@ -12,7 +12,7 @@ variables:
 build:prod:
   stage: build
   rules:
-    - if: '$CI_COMMIT_BRANCH == "$RELEASE_BRANCH"'
+    - if: '$CI_COMMIT_BRANCH == $RELEASE_BRANCH'
   dependencies: []
   script:
     - mkdir -p .cache
@@ -37,7 +37,7 @@ build:prod:
 push_clasp:
   stage: deploy
   rules:
-    - if: '$CI_COMMIT_BRANCH == "$RELEASE_BRANCH"'
+    - if: '$CI_COMMIT_BRANCH == $RELEASE_BRANCH'
   script:
     - echo $CLASPRC_JSON > ~/.clasprc.json
     - cd src && npm run clasp -- push
