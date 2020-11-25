@@ -4,9 +4,9 @@ cache:
   paths:
     - node_modules/
 
-install_clasp:
+npm_install:
   script:
-    - npm install @google/clasp -g
+    - npm install
 
 login_clasp:
   script:
