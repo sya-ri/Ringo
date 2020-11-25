@@ -40,7 +40,7 @@ push_clasp:
     - if: '$CI_COMMIT_BRANCH == $RELEASE_BRANCH'
   script:
     - echo $CLASPRC_JSON > ~/.clasprc.json
-    - cd src && npm run clasp -- push
+    - npm run clasp -- push
     - npm run clasp -- logout
   cache:
     paths:
