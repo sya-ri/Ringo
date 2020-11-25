@@ -29,7 +29,7 @@ build:prod:
 
 login_clasp:
   script:
-    - ./node_modules/.bin/clasp login
+    - npm run login -- --no-localhost
   cache:
     paths:
       - node_modules/
