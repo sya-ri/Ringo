@@ -1,5 +1,9 @@
 image: node:latest
 
+stages:
+  - build
+  - deploy
+
 variables:
   DEST_DIR: dest/
 
@@ -28,6 +32,9 @@ build:prod:
       - $DEST_DIR
 
 push_clasp:
+  stage: deploy
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "release"'
   script:
     - echo $CLASPRC_JSON > ~/.clasprc.json
     #- cd $~~~~ && npm run clasp -- push
