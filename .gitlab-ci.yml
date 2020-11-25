@@ -7,3 +7,7 @@ cache:
 install_clasp:
   script:
     - npm install @google/clasp -g
+
+login_clasp:
+  script:
+    - clasp login
