@@ -3,10 +3,6 @@ image: node:latest
 variables:
   DEST_DIR: dest/
 
-cache:
-  paths:
-    - node_modules/
-
 # package.json が編集された時だけ npm install する
 build:prod:
   stage: build
@@ -22,7 +18,6 @@ build:prod:
         (test -f package-lock.json && npm ci) ||
         npm install
       )
-    - npm run build
     - cp -p package.json .cache/
   cache:
     paths:
