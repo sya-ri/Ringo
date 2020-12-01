@@ -5,7 +5,8 @@
   "dependencies": {
     "@google/clasp": "^2.3.0",
     "inquirer": "^7.0.0",
-    "inquirer-autocomplete-prompt": "^1.0.1"
+    "inquirer-autocomplete-prompt": "^1.0.1",
+    "@types/google-apps-script": "^1.0.20"
   },
   "scripts": {
     "clasp": "clasp"
