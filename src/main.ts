@@ -7,7 +7,7 @@ function myFunction() {
 
 function doGet(e: GoogleAppsScript.Events.DoGet) {
     switch (e.parameter["path"]) {
-        case "login":
+        case "account":
             return Account.doGet(e)
     }
 }
