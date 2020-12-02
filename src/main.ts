@@ -1,5 +1,5 @@
-import "./account"
-import "./slack"
+import { Account } from "./account"
+import { Slack } from "./slack"
 
 function myFunction() {
 
@@ -8,13 +8,13 @@ function myFunction() {
 function doGet(e: GoogleAppsScript.Events.DoGet) {
     switch (e.parameter["path"]) {
         case "login":
-            return doGetLogin(e)
+            return Account.doGet(e)
     }
 }
 
 function doPost(e: GoogleAppsScript.Events.DoPost) {
     switch (e.parameter["path"]) {
         case "slack":
-            return doPostSlack(e)
+            return Slack.doPost(e)
     }
 }

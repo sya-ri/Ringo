@@ -1,16 +1,18 @@
-import "./account"
+import { Account } from "./account"
 
-function doPostSlack(e: GoogleAppsScript.Events.DoPost) {
-    const result = ContentService.createTextOutput();
-    let arguments = (e.parameter["text"] as string).split("\\s+");
-    switch (arguments[0].toLowerCase()) {
-        case "login":
-            const token = generateAccount(e.parameter["user_id"]);
-            result.setContent(ScriptApp.getService().getUrl() + "?path=login&token=" + token);
-            break;
-        default:
-            result.setContent(JSON.stringify(e));
-            break;
+export namespace Slack {
+    export function doPost(e: GoogleAppsScript.Events.DoPost) {
+        const result = ContentService.createTextOutput();
+        let arg = (e.parameter["text"] as string).split("\\s+");
+        switch (arg[0].toLowerCase()) {
+            case "login":
+                const token = Account.generate(e.parameter["user_id"]);
+                result.setContent(ScriptApp.getService().getUrl() + "?path=login&token=" + token);
+                break;
+            default:
+                result.setContent(JSON.stringify(e));
+                break;
+        }
+        return result;
     }
-    return result;
 }
