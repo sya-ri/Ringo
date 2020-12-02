@@ -1,5 +1,5 @@
 import "./properties"
-import "./slack"
+import "./@types/slack"
 import { GoogleSpreadSheet } from "./data/spread_sheet"
 
 function testGetDriveFiles() {
