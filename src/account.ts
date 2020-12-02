@@ -1,4 +1,4 @@
-import "./cache"
+import { AccountCache} from "./cache"
 
 export namespace Account {
     export function generate(account: string): string {

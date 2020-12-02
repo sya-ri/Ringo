@@ -1,6 +1,6 @@
 const ScriptCache = CacheService.getScriptCache();
 
-namespace AccountCache {
+export namespace AccountCache {
     let name = "accounts";
 
     export function add(token: string, account: string) {
