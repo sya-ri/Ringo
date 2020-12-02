@@ -5,7 +5,7 @@ function doPostSlack(e: GoogleAppsScript.Events.DoPost) {
     let arguments = (e.parameter["text"] as string).split("\\s+");
     switch (arguments[0].toLowerCase()) {
         case "login":
-            const token = generateAccount();
+            const token = generateAccount(e.parameter["user_id"]);
             result.setContent(ScriptApp.getService().getUrl() + "?path=login&token=" + token);
             break;
         default:
