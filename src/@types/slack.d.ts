@@ -1,11 +1,11 @@
-declare var SlackApp: SlackApp.App;
+declare var SlackApp: SlackApp.App
 
 declare namespace SlackApp {
     interface App {
-        create(token: string): API;
+        create(token: string): API
     }
 
     interface API {
-        authTest(): object;
+        authTest(): object
     }
 }

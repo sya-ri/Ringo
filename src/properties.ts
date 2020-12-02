@@ -1,5 +1,5 @@
 export namespace Properties {
-    const Properties = PropertiesService.getScriptProperties().getProperties();
+    const Properties = PropertiesService.getScriptProperties().getProperties()
 
     /**
      * SAVE_DRIVE_FOLDER_ID: ファイルを保存する先
