@@ -1,10 +1,6 @@
 import { Account } from "./account"
 import { Slack } from "./slack"
 
-function myFunction() {
-
-}
-
 function doGet(e: GoogleAppsScript.Events.DoGet) {
     switch (e.parameter["path"]) {
         case "account":
