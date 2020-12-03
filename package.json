@@ -10,7 +10,10 @@
     "prettier": "^2.2.1"
   },
   "scripts": {
-    "clasp": "clasp",
-    "run-prettier": "prettier --write src"
+    "clasp:login": "clasp login",
+    "clasp:logout": "clasp logout",
+    "clasp:pull": "clasp pull",
+    "clasp:push": "clasp push",
+    "prettier:fix": "prettier --write src"
   }
 }
