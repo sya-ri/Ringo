@@ -1,9 +1,18 @@
-import { AccountCache } from "./cache"
+import { AccountCache, TokenCache } from "./cache"
 
 export namespace Account {
-    export function generate(account: string): string {
+    export interface Data {
+        token: string
+    }
+
+    export function generate(user_id: string): string {
+        const account = AccountCache.get(user_id)
+        if (account != null) return account.token
         const token = Math.random().toString(32).substring(2)
-        AccountCache.add(token, account)
+        TokenCache.add(token, user_id)
+        AccountCache.add(user_id, {
+            token,
+        })
         return token
     }
 
@@ -14,7 +23,8 @@ export namespace Account {
         output.setContent(
             JSON.stringify({
                 "token": token,
-                "valid": AccountCache.contains(token),
+                "valid": TokenCache.contains(token),
+                "tokens": TokenCache.getAll(),
                 "accounts": AccountCache.getAll(),
             }),
         )
