@@ -16,7 +16,7 @@ export namespace Account {
         return token
     }
 
-    export function doGet(e: GoogleAppsScript.Events.DoGet) {
+    export function doGet(e: GoogleAppsScript.Events.DoGet): GoogleAppsScript.Content.TextOutput {
         const token = e.parameter["token"]
         if (token == null) return
         const output = ContentService.createTextOutput()

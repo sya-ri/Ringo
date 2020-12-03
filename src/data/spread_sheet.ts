@@ -3,7 +3,7 @@ export namespace GoogleSpreadSheet {
 
     export const MimeType = "application/vnd.google-apps.spreadsheet"
 
-    export function updateFiles(folderId: string) {
+    export function updateFiles(folderId: string): void {
         files = {}
         const addFiles = function (parent: string, folder: GoogleAppsScript.Drive.Folder) {
             const fileIterator = folder.getFilesByType(GoogleSpreadSheet.MimeType)
@@ -20,7 +20,7 @@ export namespace GoogleSpreadSheet {
         addFiles("", DriveApp.getFolderById(folderId))
     }
 
-    export function printFiles() {
+    export function printFiles(): void {
         Object.keys(files).forEach(function (name) {
             Logger.log(name)
         })

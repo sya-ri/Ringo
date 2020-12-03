@@ -5,7 +5,7 @@ const ScriptCache = CacheService.getScriptCache()
 export namespace TokenCache {
     const name = "tokens"
 
-    export function add(token: string, user_id: string) {
+    export function add(token: string, user_id: string): void {
         ScriptCache.put(token, user_id)
     }
 
@@ -23,7 +23,7 @@ export namespace TokenCache {
 export namespace AccountCache {
     const name = "accounts"
 
-    export function add(user_id: string, account_data: Account.Data) {
+    export function add(user_id: string, account_data: Account.Data): void {
         const data = getAll()
         data[user_id] = account_data
         put(data)
@@ -43,7 +43,7 @@ export namespace AccountCache {
         return JSON.parse(cache)
     }
 
-    function put(data: { [key: string]: Account.Data }) {
+    export function put(data: { [key: string]: Account.Data }): void {
         ScriptCache.put(name, JSON.stringify(data))
     }
 }

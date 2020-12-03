@@ -1,4 +1,4 @@
-declare var SlackApp: SlackApp.App
+declare let SlackApp: SlackApp.App
 
 declare namespace SlackApp {
     interface App {
@@ -6,6 +6,15 @@ declare namespace SlackApp {
     }
 
     interface API {
-        authTest(): object
+        authTest(): AuthTest
+    }
+
+    interface AuthTest {
+        ok: boolean
+        url: string
+        team: string
+        user: string
+        team_id: string
+        user_id: string
     }
 }
