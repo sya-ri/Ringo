@@ -5,13 +5,13 @@ export namespace GoogleSpreadSheet {
 
     export function updateFiles(folderId: string) {
         files = {}
-        let addFiles = function (parent: string, folder: GoogleAppsScript.Drive.Folder) {
+        const addFiles = function (parent: string, folder: GoogleAppsScript.Drive.Folder) {
             const fileIterator = folder.getFilesByType(GoogleSpreadSheet.MimeType)
             while (fileIterator.hasNext()) {
                 const file = fileIterator.next()
                 files[parent + "/" + file.getName()] = file
             }
-            let childFolderIterator = folder.getFolders()
+            const childFolderIterator = folder.getFolders()
             while (childFolderIterator.hasNext()) {
                 const childFolder = childFolderIterator.next()
                 addFiles(parent + "/" + childFolder.getName(), childFolder)

@@ -3,7 +3,7 @@ import { Account } from "./account"
 const ScriptCache = CacheService.getScriptCache()
 
 export namespace TokenCache {
-    let name = "tokens"
+    const name = "tokens"
 
     export function add(token: string, user_id: string) {
         ScriptCache.put(token, user_id)
@@ -21,7 +21,7 @@ export namespace TokenCache {
 }
 
 export namespace AccountCache {
-    let name = "accounts"
+    const name = "accounts"
 
     export function add(user_id: string, account_data: Account.Data) {
         const data = getAll()
