@@ -6,4 +6,10 @@ export namespace Html {
             .setTitle("Ringo - 404 Not Found")
             .setFaviconUrl(Properties.FaviconUrl)
     }
+
+    export function get403PermissionDenied(): GoogleAppsScript.HTML.HtmlOutput {
+        return HtmlService.createHtmlOutputFromFile("html/403")
+            .setTitle("Ringo - 403 Permission Denied")
+            .setFaviconUrl(Properties.FaviconUrl)
+    }
 }

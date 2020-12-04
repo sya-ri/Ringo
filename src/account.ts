@@ -20,7 +20,7 @@ export namespace Account {
 
     export function doGet(e: GoogleAppsScript.Events.DoGet): GoogleAppsScript.HTML.HtmlOutput {
         const token = e.parameter["token"]
-        if (token == null || !TokenCache.contains(token)) return Html.get404NotFound()
+        if (token == null || !TokenCache.contains(token)) return Html.get403PermissionDenied()
         const html = HtmlService.createTemplateFromFile("html/account")
         html.paths = GoogleSpreadSheet.getFileNames()
         return html.evaluate()
