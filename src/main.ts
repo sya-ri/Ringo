@@ -3,12 +3,12 @@ import { Slack } from "./slack"
 import { Html } from "./html"
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function doGet(
-    e: GoogleAppsScript.Events.DoGet,
-): GoogleAppsScript.Content.TextOutput | GoogleAppsScript.HTML.HtmlOutput {
+function doGet(e: GoogleAppsScript.Events.DoGet): GoogleAppsScript.HTML.HtmlOutput {
     switch (e.parameter["path"]) {
         case "account":
             return Account.doGet(e)
+        case "info":
+            return HtmlService.createHtmlOutput().setContent(e.parameter["file"])
     }
     return Html.get404NotFound()
 }

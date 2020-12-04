@@ -1,3 +1,5 @@
+import { Properties } from "../properties"
+
 export namespace GoogleSpreadSheet {
     let files: { [key: string]: GoogleAppsScript.Drive.File }
 
@@ -20,9 +22,8 @@ export namespace GoogleSpreadSheet {
         addFiles("", DriveApp.getFolderById(folderId))
     }
 
-    export function printFiles(): void {
-        Object.keys(files).forEach(function (name) {
-            Logger.log(name)
-        })
+    export function getFileNames(): string[] {
+        if (files == null) updateFiles(Properties.SaveDriveFolderID)
+        return Object.keys(files)
     }
 }

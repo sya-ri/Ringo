@@ -1,4 +1,6 @@
 import { AccountCache, TokenCache } from "./cache"
+import { Html } from "./html"
+import { GoogleSpreadSheet } from "./data/spread_sheet"
 
 export namespace Account {
     export interface Data {
@@ -16,18 +18,11 @@ export namespace Account {
         return token
     }
 
-    export function doGet(e: GoogleAppsScript.Events.DoGet): GoogleAppsScript.Content.TextOutput {
+    export function doGet(e: GoogleAppsScript.Events.DoGet): GoogleAppsScript.HTML.HtmlOutput {
         const token = e.parameter["token"]
-        if (token == null) return
-        const output = ContentService.createTextOutput()
-        output.setContent(
-            JSON.stringify({
-                "token": token,
-                "valid": TokenCache.contains(token),
-                "tokens": TokenCache.getAll(),
-                "accounts": AccountCache.getAll(),
-            }),
-        )
-        return output
+        if (token == null || !TokenCache.contains(token)) return Html.get404NotFound()
+        const html = HtmlService.createTemplateFromFile("html/account")
+        html.paths = GoogleSpreadSheet.getFileNames()
+        return html.evaluate()
     }
 }
