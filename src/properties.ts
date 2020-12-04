@@ -14,7 +14,7 @@ export namespace Properties {
     export const SlackApiToken = properties.SLACK_API_TOKEN
 
     /**
-     * FAVICON_URL: Favicon の URL
+     * ICON_URL: アイコンの URL
      */
-    export const FaviconUrl = properties.FAVICON_URL
+    export const IconUrl = properties.ICON_URL
 }
