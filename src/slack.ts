@@ -3,7 +3,8 @@ import { Account } from "./account"
 export namespace Slack {
     export function doPost(e: GoogleAppsScript.Events.DoPost): GoogleAppsScript.Content.TextOutput {
         const result = ContentService.createTextOutput()
-        const arg = (e.parameter["text"] as string).split("\\s+")
+        const arg = (e.parameter["text"] as string).split(RegExp("\\s+"))
+        if (arg[0] == e.parameter["command"]) arg.shift()
         switch (arg[0].toLowerCase()) {
             case "login":
                 result.setContent(
