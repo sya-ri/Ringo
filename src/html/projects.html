@@ -1,50 +1,6 @@
 <meta charset="UTF-8">
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
-    #header {
-        background-color: black;
-        color: white;
-        overflow: hidden;
-        padding: 5px 10px;
-        line-height: 42px;
-    }
-    #header h1 {
-        float: left;
-        font-size: 32px;
-    }
-    #header ul {
-        padding-right: 10px;
-        float: right;
-        list-style: none;
-    }
-    #header ul li {
-        margin-left: 20px;
-        display: inline-block;
-    }
-    #header ul li a {
-        color: white;
-        text-decoration: none;
-    }
-</style>
 <div>
-    <div id="header">
-        <h1>Ringo</h1>
-        <ul>
-            <li>
-                <a href="<?= url ?>&path=projects" target="_top">
-                    プロジェクト
-                </a>
-            </li>
-            <li>
-                <a href="<?= url ?>&path=option" target="_top">
-                    設定
-                </a>
-            </li>
-        </ul>
-    </div>
+    <?!= HtmlService.createHtmlOutputFromFile("html/header").getContent(); ?>
     <h2>プロジェクト一覧</h2>
     <ul>
         <? for(var i = 0; i < paths.length; i++){ ?>
