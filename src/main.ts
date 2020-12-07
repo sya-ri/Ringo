@@ -6,25 +6,23 @@ import { TokenCache } from "./cache"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function doGet(e: GoogleAppsScript.Events.DoGet): GoogleAppsScript.HTML.HtmlOutput {
     const token = e.parameter["token"]
-    if (token == null || !TokenCache.contains(token)) return Html.get403PermissionDenied()
+    const url = ScriptApp.getService().getUrl() + "?token=" + token
+    if (token == null || !TokenCache.contains(token)) return Html.get403PermissionDenied(url)
     switch (e.parameter["path"]) {
         case "projects":
-            return Projects.doGet(token)
+            return Projects.doGet(url)
         case "project":
             return HtmlService.createHtmlOutput().setContent(e.parameter["file"])
         case "option":
             return HtmlService.createHtmlOutput().setContent("option")
     }
-    return Html.get404NotFound()
+    return Html.get404NotFound(url)
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function doPost(
-    e: GoogleAppsScript.Events.DoPost,
-): GoogleAppsScript.Content.TextOutput | GoogleAppsScript.HTML.HtmlOutput {
+function doPost(e: GoogleAppsScript.Events.DoPost): GoogleAppsScript.Content.TextOutput {
     switch (e.parameter["path"]) {
         case "slack":
             return Slack.doPost(e)
     }
-    return Html.get404NotFound()
 }

@@ -1,4 +1,6 @@
-<?!= HtmlService.createHtmlOutputFromFile("html/header").getContent(); ?>
+<? var header = HtmlService.createTemplateFromFile("html/header"); ?>
+<? header.url = url ?>
+<?!= header.evaluate().getContent(); ?>
 <div style="position: absolute; top: 50%; left: 50%; transform : translate(-50%, -50%); text-align: center;">
     <h1>404 Not Found</h1>
     <p>存在しないページです。</p>
