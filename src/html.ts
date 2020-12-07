@@ -9,7 +9,10 @@ export namespace Html {
         template: GoogleAppsScript.HTML.HtmlTemplate,
         title: string,
     ): GoogleAppsScript.HTML.HtmlOutput {
-        return template.evaluate().setTitle("Ringo - " + title)
+        return template
+            .evaluate()
+            .setTitle("Ringo - " + title)
+            .addMetaTag("viewport", "width=device-width, initial-scale=1")
     }
 
     export function get404NotFound(url: string): GoogleAppsScript.HTML.HtmlOutput {
