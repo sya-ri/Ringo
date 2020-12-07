@@ -1,5 +1,4 @@
 import { AccountCache, TokenCache } from "./cache"
-import { Html } from "./html"
 import { GoogleSpreadSheet } from "./data/spread_sheet"
 
 export namespace Account {
@@ -18,9 +17,7 @@ export namespace Account {
         return token
     }
 
-    export function doGet(e: GoogleAppsScript.Events.DoGet): GoogleAppsScript.HTML.HtmlOutput {
-        const token = e.parameter["token"]
-        if (token == null || !TokenCache.contains(token)) return Html.get403PermissionDenied()
+    export function doGet(token: string): GoogleAppsScript.HTML.HtmlOutput {
         const html = HtmlService.createTemplateFromFile("html/account")
         html.paths = GoogleSpreadSheet.getFileNames()
         html.url = ScriptApp.getService().getUrl() + "?token=" + token

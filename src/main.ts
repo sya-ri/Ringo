@@ -1,12 +1,15 @@
 import { Account } from "./account"
 import { Slack } from "./slack"
 import { Html } from "./html"
+import { TokenCache } from "./cache"
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function doGet(e: GoogleAppsScript.Events.DoGet): GoogleAppsScript.HTML.HtmlOutput {
+    const token = e.parameter["token"]
+    if (token == null || !TokenCache.contains(token)) return Html.get403PermissionDenied()
     switch (e.parameter["path"]) {
         case "account":
-            return Account.doGet(e)
+            return Account.doGet(token)
         case "info":
             return HtmlService.createHtmlOutput().setContent(e.parameter["file"])
         case "option":
