@@ -9,6 +9,8 @@ function doGet(e: GoogleAppsScript.Events.DoGet): GoogleAppsScript.HTML.HtmlOutp
             return Account.doGet(e)
         case "info":
             return HtmlService.createHtmlOutput().setContent(e.parameter["file"])
+        case "option":
+            return HtmlService.createHtmlOutput().setContent("option")
     }
     return Html.get404NotFound()
 }

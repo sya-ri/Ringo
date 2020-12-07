@@ -23,6 +23,7 @@ export namespace Account {
         if (token == null || !TokenCache.contains(token)) return Html.get403PermissionDenied()
         const html = HtmlService.createTemplateFromFile("html/account")
         html.paths = GoogleSpreadSheet.getFileNames()
+        html.url = ScriptApp.getService().getUrl() + "?token=" + token
         return html.evaluate()
     }
 }
