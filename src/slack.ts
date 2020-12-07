@@ -9,7 +9,7 @@ export namespace Slack {
             case "login":
                 result.setContent(
                     ScriptApp.getService().getUrl() +
-                        "?path=account&token=" +
+                        "?path=projects&token=" +
                         Account.generate(e.parameter["user_id"]),
                 )
                 break

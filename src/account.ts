@@ -1,5 +1,4 @@
 import { AccountCache, TokenCache } from "./cache"
-import { GoogleSpreadSheet } from "./data/spread_sheet"
 
 export namespace Account {
     export interface Data {
@@ -15,12 +14,5 @@ export namespace Account {
             token,
         })
         return token
-    }
-
-    export function doGet(token: string): GoogleAppsScript.HTML.HtmlOutput {
-        const html = HtmlService.createTemplateFromFile("html/account")
-        html.paths = GoogleSpreadSheet.getFileNames()
-        html.url = ScriptApp.getService().getUrl() + "?token=" + token
-        return html.evaluate()
     }
 }
