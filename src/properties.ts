@@ -12,9 +12,4 @@ export namespace Properties {
      * - Bot User OAuth Access Token
      */
     export const SlackApiToken = properties.SLACK_API_TOKEN
-
-    /**
-     * ICON_URL: アイコンの URL
-     */
-    export const IconUrl = properties.ICON_URL
 }

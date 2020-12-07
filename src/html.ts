@@ -5,13 +5,11 @@ export namespace Html {
         return HtmlService.createTemplateFromFile("html/404")
             .evaluate()
             .setTitle("Ringo - 404 Not Found")
-            .setFaviconUrl(Properties.IconUrl)
     }
 
     export function get403PermissionDenied(): GoogleAppsScript.HTML.HtmlOutput {
         return HtmlService.createTemplateFromFile("html/403")
             .evaluate()
             .setTitle("Ringo - 403 Permission Denied")
-            .setFaviconUrl(Properties.IconUrl)
     }
 }
