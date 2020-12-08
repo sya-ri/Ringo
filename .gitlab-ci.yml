@@ -6,7 +6,7 @@ stages:
 
 variables:
   DEST_DIR: dest/
-  RELEASE_BRANCH: release
+  RELEASE_BRANCH: master
 
 # package.json が編集された時だけ npm install する
 build:prod:
