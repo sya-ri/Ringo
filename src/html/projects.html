@@ -1,8 +1,8 @@
 <meta charset="UTF-8">
-<div>
-    <? var header = HtmlService.createTemplateFromFile("html/header"); ?>
-    <? header.url = url ?>
-    <?!= header.evaluate().getContent(); ?>
+<? var header = HtmlService.createTemplateFromFile("html/header"); ?>
+<? header.url = url ?>
+<?!= header.evaluate().getContent(); ?>
+<div id="body">
     <h2>プロジェクト一覧</h2>
     <ul>
         <?!= projects ?>

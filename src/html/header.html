@@ -2,6 +2,7 @@
     * {
         margin: 0;
         padding: 0;
+        list-style: none;
     }
     #header {
         background-color: black;
@@ -17,7 +18,6 @@
     #header ul {
         padding-right: 10px;
         float: right;
-        list-style: none;
     }
     #header ul li {
         margin-left: 20px;
@@ -26,6 +26,15 @@
     #header ul li a {
         color: white;
         text-decoration: none;
+    }
+    #body {
+        max-width: 1024px;
+        margin: auto;
+    }
+    @media screen and (max-width: 1024px) {
+        #body {
+            width: 100%;
+        }
     }
 </style>
 <div id="header">
