@@ -23,8 +23,10 @@ export namespace Projects {
                         body += f.name
                         body += "</a></li>"
                     } else {
-                        childTree += "<li><p>" + f.name + "</p></li>"
-                        childTree += "<ul>" + tree(f.folder) + "</ul>"
+                        const treeId = "tree@" + folder + "/" + f.name
+                        const onClick = "onclick='toggleTreeVisible(\"" + treeId + "\")'"
+                        childTree += "<li " + onClick + "><p>" + f.name + "</p></li>"
+                        childTree += "<ul id='" + treeId + "'>" + tree(f.folder) + "</ul>"
                     }
                 }
                 body += "</ul>"
