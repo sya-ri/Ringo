@@ -5,12 +5,6 @@
     <?!= header.evaluate().getContent(); ?>
     <h2>プロジェクト一覧</h2>
     <ul>
-        <? for(var i = 0; i < paths.length; i++){ ?>
-        <li>
-            <a href="<?= url ?>&path=project&file=<?= paths[i] ?>" target="_top">
-                <?= paths[i] ?>
-            </a>
-        </li>
-        <? } ?>
+        <?!= projects ?>
     </ul>
 </div>

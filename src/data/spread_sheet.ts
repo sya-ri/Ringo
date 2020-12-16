@@ -1,29 +1,52 @@
 import { Properties } from "../properties"
 
 export namespace GoogleSpreadSheet {
-    let files: { [key: string]: GoogleAppsScript.Drive.File }
+    export interface Data {
+        path: string
+        name: string
+        isFile: boolean
+        file: GoogleAppsScript.Drive.File
+        folder: { [name: string]: Data[] }
+    }
+
+    let files: { [folder: string]: Data[] }
 
     export const MimeType = "application/vnd.google-apps.spreadsheet"
 
     export function updateFiles(folderId: string): void {
-        files = {}
-        const addFiles = function (parent: string, folder: GoogleAppsScript.Drive.Folder) {
+        const getFiles = function (parent: string, folder: GoogleAppsScript.Drive.Folder) {
+            const files = {}
+            files[parent] = []
             const fileIterator = folder.getFilesByType(GoogleSpreadSheet.MimeType)
-            while (fileIterator.hasNext()) {
-                const file = fileIterator.next()
-                files[parent + "/" + file.getName()] = file
-            }
             const childFolderIterator = folder.getFolders()
             while (childFolderIterator.hasNext()) {
                 const childFolder = childFolderIterator.next()
-                addFiles(parent + "/" + childFolder.getName(), childFolder)
+                const name = childFolder.getName()
+                files[parent].push({
+                    path: parent + "/",
+                    name: name,
+                    isFile: false,
+                    file: null,
+                    folder: getFiles(parent + "/" + name, childFolder),
+                })
             }
+            while (fileIterator.hasNext()) {
+                const file = fileIterator.next()
+                files[parent].push({
+                    path: parent + "/",
+                    name: file.getName(),
+                    isFile: true,
+                    file: file,
+                    folder: null,
+                })
+            }
+            return files
         }
-        addFiles("", DriveApp.getFolderById(folderId))
+        files = getFiles("", DriveApp.getFolderById(folderId))
     }
 
-    export function getFileNames(): string[] {
+    export function getFiles(): { [folder: string]: Data[] } {
         if (files == null) updateFiles(Properties.SaveDriveFolderID)
-        return Object.keys(files)
+        return files
     }
 }
