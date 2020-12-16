@@ -1,4 +1,39 @@
 <style>
+    #project_make_header {
+        padding: 10px;
+        overflow: hidden;
+        border-bottom: solid;
+        border-width: thin;
+    }
+    #title {
+        float: left;
+        width: 200px;
+    }
+    #project_make {
+        float: right;
+        width: 500px;
+    }
+    #project_id,
+    #project_id_submit {
+        font-size: 16px;
+        line-height: 1.0;
+        border-radius: 0;
+    }
+    #project_id {
+        padding: 10px 15px;
+        border: 1px solid black;
+        width: calc(100% - 102px);
+    }
+    @media screen and (max-width: 500px) {
+        #project_make {
+            width: 100%;
+        }
+    }
+    #project_id_submit {
+        padding: 11px 15px;
+        background-color: white;
+        border: 1px solid black;
+    }
     .tree li {
         padding: 10px 5px;
     }
@@ -16,7 +51,13 @@
 <? header.url = url ?>
 <?!= header.evaluate().getContent(); ?>
 <div id="body">
-    <h2>プロジェクト一覧</h2>
+    <div id="project_make_header">
+        <h2 id="title">プロジェクト一覧</h2>
+        <form id="project_make" action="<?= url ?>&path=projects" method="post">
+            <input name="project_id" id="project_id"  placeholder="プロジェクト名">
+            <input id="project_id_submit" type="submit" value="作成">
+        </form>
+    </div>
     <ul class='tree'>
         <?!= projects ?>
     </ul>
