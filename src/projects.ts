@@ -13,23 +13,27 @@ export namespace Projects {
             let body = ""
             let childTree = ""
             Object.keys(files).forEach((folder) => {
-                body += "<ul>"
-                for (let i = 0; i < files[folder].length; i++) {
-                    const f = files[folder][i]
-                    if (f.isFile) {
-                        body += "<li><a href='"
-                        body += url + "&path=project&file=" + (f.path + f.name)
-                        body += "' target='_top'>"
-                        body += f.name
-                        body += "</a></li>"
-                    } else {
-                        const treeId = "tree@" + folder + "/" + f.name
-                        const onClick = "onclick='toggleTreeVisible(\"" + treeId + "\")'"
-                        childTree += "<li " + onClick + "><p>" + f.name + "</p></li>"
-                        childTree += "<ul id='" + treeId + "'>" + tree(f.folder) + "</ul>"
+                const length = files[folder].length
+                if (length != 0) {
+                    body += "<ul class='tree'>"
+                    for (let i = 0; i < length; i++) {
+                        const f = files[folder][i]
+                        if (f.isFile) {
+                            body += "<li class='tree-child'><a href='"
+                            body += url + "&path=project&file=" + (f.path + f.name)
+                            body += "' target='_top'>"
+                            body += f.name
+                            body += "</a></li>"
+                        } else {
+                            const treeId = "tree@" + folder + "/" + f.name
+                            const onClick = "onclick='toggleTreeVisible(\"" + treeId + "\")'"
+                            childTree +=
+                                "<li class='tree' " + onClick + "><p>" + f.name + "</p></li>"
+                            childTree += "<ul id='" + treeId + "'>" + tree(f.folder) + "</ul>"
+                        }
                     }
+                    body += "</ul>"
                 }
-                body += "</ul>"
             })
             return body + childTree
         }
