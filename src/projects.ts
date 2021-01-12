@@ -1,11 +1,25 @@
 import { GoogleSpreadSheet } from "./data/spread_sheet"
 import { Html } from "./html"
+import { TokenCache } from "./cache"
 
 export namespace Projects {
     export function doGet(url: string): GoogleAppsScript.HTML.HtmlOutput {
         const html = Html.template("html/projects", url)
         html.projects = getProjects(url)
         return Html.evaluate(html, "Projects")
+    }
+
+    export function doPost(e: GoogleAppsScript.Events.DoPost): GoogleAppsScript.HTML.HtmlOutput {
+        const project_id = e.parameter["project_id"] as string
+        const separated_id = project_id.split("/")
+        const fileName = separated_id.pop()
+        const folderPath = separated_id.slice(0, -1)
+        const folder = GoogleSpreadSheet.getOrCreateFolder(folderPath)
+        GoogleSpreadSheet.createNewSheet(fileName, folder)
+        const token = e.parameter["token"]
+        const url = Html.createUrl(token)
+        if (token == null || !TokenCache.contains(token)) return Html.get403PermissionDenied(url)
+        return Projects.doGet(url)
     }
 
     export function getProjects(url: string): string {

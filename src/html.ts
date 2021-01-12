@@ -22,4 +22,8 @@ export namespace Html {
     export function get403PermissionDenied(url: string): GoogleAppsScript.HTML.HtmlOutput {
         return evaluate(template("html/403", url), "403 Permission Denied")
     }
+
+    export function createUrl(token: string): string {
+        return ScriptApp.getService().getUrl() + "?token=" + token
+    }
 }

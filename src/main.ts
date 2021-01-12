@@ -6,7 +6,7 @@ import { TokenCache } from "./cache"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function doGet(e: GoogleAppsScript.Events.DoGet): GoogleAppsScript.HTML.HtmlOutput {
     const token = e.parameter["token"]
-    const url = ScriptApp.getService().getUrl() + "?token=" + token
+    const url = Html.createUrl(token)
     if (token == null || !TokenCache.contains(token)) return Html.get403PermissionDenied(url)
     switch (e.parameter["path"]) {
         case "projects":
@@ -20,9 +20,11 @@ function doGet(e: GoogleAppsScript.Events.DoGet): GoogleAppsScript.HTML.HtmlOutp
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function doPost(e: GoogleAppsScript.Events.DoPost): GoogleAppsScript.Content.TextOutput {
+function doPost(e: GoogleAppsScript.Events.DoPost): GoogleAppsScript.Content.TextOutput | GoogleAppsScript.HTML.HtmlOutput {
     switch (e.parameter["path"]) {
         case "slack":
             return Slack.doPost(e)
+        case "projects":
+            return Projects.doPost(e)
     }
 }

@@ -49,4 +49,23 @@ export namespace GoogleSpreadSheet {
         if (files == null) updateFiles(Properties.SaveDriveFolderID)
         return files
     }
+
+    export function getOrCreateFolder(path: string[]): GoogleAppsScript.Drive.Folder | null {
+        if (path.length != 0) {
+            let parent = DriveApp.getFolderById(Properties.SaveDriveFolderID)
+            path.forEach((p) => {
+                parent = parent.createFolder(p)
+            })
+            return parent
+        } else {
+            return null
+        }
+    }
+
+    export function createNewSheet(name: string, folder: GoogleAppsScript.Drive.Folder): void {
+        const sheet = SpreadsheetApp.create(name)
+        const file = DriveApp.getFileById(sheet.getId())
+        folder.addFile(file)
+        DriveApp.getRootFolder().removeFile(file)
+    }
 }
