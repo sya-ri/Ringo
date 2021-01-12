@@ -9,7 +9,7 @@
     "clasp:push": "clasp push",
     "eslint": "eslint src",
     "eslint:fix": "eslint --fix src",
-    "preinstall": "sort-package-json",
+    "json:fix": "sort-package-json",
     "prettier:fix": "prettier --write src"
   },
   "dependencies": {
